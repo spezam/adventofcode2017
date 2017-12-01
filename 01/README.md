@@ -6,4 +6,4 @@ Got stubborn with this package:
 
 https://golang.org/pkg/container/ring/
 
-which turned out an interesting challenge.
+which turned out to be an interesting challenge.
