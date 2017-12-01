@@ -79,22 +79,16 @@ func CaptchaRing(c string) int {
 }
 
 func HalfCaptcha(c string) int {
-	s := []int{}
-
-	// to []int
-	for _, v := range strings.Split(c, "") {
-		i, _ := strconv.Atoi(v)
-		s = append(s, i)
-	}
-
-	z := 0
-	for i := 0; i < len(s)/2; i++ {
-		if s[i] == s[i+len(s)/2] {
-			z += s[i] * 2
+	sum := 0
+	for i := 0; i < len(c)/2; i++ {
+		first, _ := strconv.Atoi(string(c[i]))
+		second, _ := strconv.Atoi(string(c[i+len(c)/2]))
+		if first == second {
+			sum += first * 2
 		}
 	}
 
-	return z
+	return sum
 }
 
 // eof
