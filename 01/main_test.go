@@ -52,4 +52,29 @@ func TestCaptchaRing(t *testing.T) {
 	}
 }
 
+func TestHalfCaptchaRing(t *testing.T) {
+	tt := []struct {
+		name    string
+		digits  string
+		captcha int
+	}{
+		{"case 1212", "1212", 6},
+		{"case 1221", "1221", 0},
+		{"case 123425", "123425", 4},
+		{"case 123123", "123123", 12},
+		{"case 12131415", "12131415", 4},
+	}
+
+	for _, tc := range tt {
+		t.Run(tc.name, func(t *testing.T) {
+			c := HalfCaptchaRing(tc.digits)
+			if c != tc.captcha {
+				t.Fatalf("Captcha should be %v, got: %d", tc.captcha, c)
+			}
+
+		})
+
+	}
+}
+
 // eof
