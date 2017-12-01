@@ -52,7 +52,7 @@ func TestCaptchaRing(t *testing.T) {
 	}
 }
 
-func TestHalfCaptchaRing(t *testing.T) {
+func TestHalfCaptcha(t *testing.T) {
 	tt := []struct {
 		name    string
 		digits  string
@@ -67,7 +67,7 @@ func TestHalfCaptchaRing(t *testing.T) {
 
 	for _, tc := range tt {
 		t.Run(tc.name, func(t *testing.T) {
-			c := HalfCaptchaRing(tc.digits)
+			c := HalfCaptcha(tc.digits)
 			if c != tc.captcha {
 				t.Fatalf("Captcha should be %v, got: %d", tc.captcha, c)
 			}
