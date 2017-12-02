@@ -20,7 +20,7 @@ func TestCaptcha(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			c := Captcha(tc.digits)
 			if c != tc.captcha {
-				t.Fatalf("Captcha should be %d, got: %d", tc.captcha, c)
+				t.Errorf("Captcha should be %d, got: %d", tc.captcha, c)
 			}
 
 		})
@@ -44,7 +44,7 @@ func TestCaptchaRing(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			c := CaptchaRing(tc.digits)
 			if c != tc.captcha {
-				t.Fatalf("Captcha should be %v, got: %d", tc.captcha, c)
+				t.Errorf("Captcha should be %v, got: %d", tc.captcha, c)
 			}
 
 		})
@@ -69,7 +69,7 @@ func TestHalfCaptcha(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			c := HalfCaptcha(tc.digits)
 			if c != tc.captcha {
-				t.Fatalf("Captcha should be %v, got: %d", tc.captcha, c)
+				t.Errorf("Captcha should be %v, got: %d", tc.captcha, c)
 			}
 
 		})
