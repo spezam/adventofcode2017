@@ -47,7 +47,6 @@ func checksumLine(l []int) int {
 		if v > b {
 			b = v
 		}
-
 		// smaller
 		if v < s {
 			s = v
@@ -63,13 +62,14 @@ func evenlyDivisible(l []int) int {
 	for k, v := range l {
 		for i := 0; i < len(l); i++ {
 			// skip itself
-			if k != i {
-				// check remainder
-				if v%l[i] == 0 {
-					s += v / l[i]
-				}
+			if k == i {
+				continue
 			}
 
+			// check remainder
+			if v%l[i] == 0 {
+				s += v / l[i]
+			}
 		}
 	}
 
