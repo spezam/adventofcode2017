@@ -1,29 +1,24 @@
 package main
 
 import (
-	"encoding/csv"
+	"bufio"
 	"fmt"
-	"io"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func main() {
-	f, err := os.Open("input")
+	file, err := os.Open("input")
 	if err != nil {
 		fmt.Print(err)
 	}
-	defer f.Close()
-
-	lines := csv.NewReader(f)
-	lines.Comma = '\t'
+	defer file.Close()
 
 	var k, z int
-	for {
-		r, err := lines.Read()
-		if err == io.EOF {
-			break
-		}
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		r := strings.Fields(scanner.Text())
 
 		s := []int{}
 		for _, v := range r {
