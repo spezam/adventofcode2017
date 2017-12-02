@@ -1,5 +1,17 @@
 package main
 
+// The spreadsheet consists of rows of apparently-random numbers. To make sure the
+// recovery process is on the right track, they need you to calculate the
+// spreadsheet's checksum. For each row, determine the difference between the
+// largest value and the smallest value; the checksum is the sum of all of these
+// differences.
+
+// --- Part Two ---
+// The goal is to find the only two numbers in each row where one evenly divides
+// the other - that is, where the result of the division operation is a whole
+// number. They would like you to find those numbers on each line, divide them,
+// and add up each line's result.
+
 import (
 	"bufio"
 	"fmt"
@@ -26,15 +38,15 @@ func main() {
 			s = append(s, i)
 		}
 
-		z += checksumLine(s)
-		k += evenlyDivisible(s)
+		z += ChecksumLine(s)
+		k += EvenlyDivisible(s)
 	}
 
 	fmt.Println("Checksum is:", z)
 	fmt.Println("Evenly divisible values sum is:", k)
 }
 
-func checksumLine(l []int) int {
+func ChecksumLine(l []int) int {
 	s, b := l[0], l[0]
 
 	for _, v := range l {
@@ -51,19 +63,19 @@ func checksumLine(l []int) int {
 	return b - s
 }
 
-func evenlyDivisible(l []int) int {
+func EvenlyDivisible(l []int) int {
 	var s int
 
 	for k, v := range l {
-		for i := 0; i < len(l); i++ {
+		for kk, vv := range l {
 			// skip itself
-			if k == i {
+			if k == kk {
 				continue
 			}
 
 			// check remainder
-			if v%l[i] == 0 {
-				s += v / l[i]
+			if v%vv == 0 {
+				s += v / vv
 			}
 		}
 	}
