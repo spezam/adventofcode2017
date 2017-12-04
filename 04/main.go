@@ -7,6 +7,9 @@ package main
 // valid passphrase must contain no two words that are anagrams of each other -
 // that is, a passphrase is invalid if any word's letters can be rearranged to
 // form any other word in the passphrase.
+//
+// Answer part one: 383
+// Answer part two: 265
 
 import (
 	"bufio"
@@ -23,12 +26,13 @@ func main() {
 	}
 	defer file.Close()
 
-	fmt.Println("Valid passphrases:", ValidPassphrases(file))
+	fmt.Println("Valid passphrases:", ValidPassphrases(file, false))
+
 	_, err = file.Seek(0, 0)
-	fmt.Println("Valid passphrases:", ValidPassphrasesAnagrams(file))
+	fmt.Println("Valid passphrases (part two):", ValidPassphrases(file, true))
 }
 
-func ValidPassphrases(f *os.File) int {
+func ValidPassphrases(f *os.File, anagram bool) int {
 	var valid int
 
 	scanner := bufio.NewScanner(f)
@@ -36,38 +40,15 @@ func ValidPassphrases(f *os.File) int {
 		r := strings.Fields(scanner.Text())
 
 		dup := map[string]bool{}
-		for k, _ := range r {
-			if dup[r[k]] != true {
-				dup[r[k]] = true
-			}
-		}
-
-		if len(dup) == len(r) {
-			valid++
-		}
-	}
-
-	return valid
-}
-
-func ValidPassphrasesAnagrams(f *os.File) int {
-	var valid int
-
-	scanner := bufio.NewScanner(f)
-	for scanner.Scan() {
-		r := strings.Fields(scanner.Text())
-		fmt.Println(r)
-
-		dup := map[string]int{}
 		for _, v := range r {
-			// sort string - easier to compare
-			s := sortString(string(v))
-			fmt.Println(s)
+			if anagram {
+				// sort string - easier to compare
+				v = sortString(string(v))
+			}
 
-			dup[s]++
+			dup[v] = true
 		}
 
-		// if lenghts match there's no duplicates
 		if len(dup) == len(r) {
 			valid++
 		}
