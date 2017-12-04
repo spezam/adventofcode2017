@@ -36,7 +36,7 @@ func main() {
 
 // Captcha calc
 func Captcha(c string) int {
-	s := []int{}
+	var s []int
 
 	// to []int
 	for _, v := range strings.Split(c, "") {
