@@ -10,6 +10,9 @@ package main
 // Now, instead of considering the next digit, it wants you to consider the digit
 // halfway around the circular list. That is, if your list contains 10 items, only
 // include a digit in your sum if the digit 10/2 = 5 steps forward matches it.
+//
+// Answer part one: 1251
+// Answer part two: 1244
 
 import (
 	"container/ring"
