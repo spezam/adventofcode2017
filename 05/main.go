@@ -27,13 +27,13 @@ func main() {
 	}
 	defer f.Close()
 
-	fmt.Println("Steps to reach the Maze exit:", exitMaze(f))
+	fmt.Println("Steps to reach the Maze exit:", ExitMaze(f))
 
 	_, err = f.Seek(0, 0)
-	fmt.Println("Steps to reach the Maze exit (part two):", exitMazeTwo(f))
+	fmt.Println("Steps to reach the Maze exit (part two):", ExitMazeTwo(f))
 }
 
-func exitMaze(f *os.File) int {
+func ExitMaze(f *os.File) int {
 	scanner := bufio.NewScanner(f)
 	jumps := []int{}
 	for scanner.Scan() {
@@ -62,7 +62,7 @@ func exitMaze(f *os.File) int {
 	return steps
 }
 
-func exitMazeTwo(f *os.File) int {
+func ExitMazeTwo(f *os.File) int {
 	scanner := bufio.NewScanner(f)
 	jumps := []int{}
 	for scanner.Scan() {
